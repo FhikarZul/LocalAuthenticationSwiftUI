@@ -6,11 +6,19 @@
 //
 
 import SwiftUI
+import LocalAuthentication
 
 struct ContentView: View {
+    
+    @StateObject var am = AuthenticationManager()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack{
+            Text(am.isUnlocked ? "Unlocked" : "Locked")
+        }
+        .onAppear{
+            am.authenticate()
+        }
     }
 }
 
